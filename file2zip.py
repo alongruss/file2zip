@@ -17,7 +17,8 @@ def handler(event, context):
     s3_client.download_file(invoking_bucket, key, local_input_path)
     try:
         import zlib
-        compression = zipfile.ZIP_DEFLATED
+        #compression = zipfile.ZIP_DEFLATED # Most common python 2
+        compression = zipfile.ZIP_LZMA # Better new in python 3
     except:
         compression = zipfile.ZIP_STORED
     print ('creating archive')
